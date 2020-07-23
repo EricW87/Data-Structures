@@ -9,12 +9,15 @@ return elements in First In First Out order.
    Make sure the Queue tests pass.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Queue?
+
+   >>>Implenting it with an array is much easier since you can use built in array methods.
    
 Stretch: What if you could only use instances of your Stack class to implement the Queue?
          What would that look like? How many Stacks would you need? Try it!
 """
 
 from singly_linked_list import LinkedList
+from stack import Stack #For the stretch
 
 class QueueA:
     def __init__(self):
@@ -33,7 +36,7 @@ class QueueA:
             self.size -= 1
             return self.storage.pop(0)
 
-class Queue:
+class QueueB:
     def __init__(self):
         self.size = 0
         self.storage = LinkedList()
@@ -51,3 +54,29 @@ class Queue:
             return self.storage.remove_head()
 
         return None
+
+### STRETCH ?? ###
+class Queue:
+    def __init__(self):
+        self.storage = Stack()
+
+    def __len__(self):
+        return self.storage.__len__()
+
+    def enqueue(self, value):
+        self.storage.push(value)
+
+    def dequeue(self):
+        new_storage = Stack()
+        value = self.storage.pop()
+        new_storage.push(value)
+        prev_value = None
+
+        while value:
+            prev_value = value
+            value = self.storage.pop()
+            new_storage.push(value)
+
+        new_storage.pop()
+        self.storage = new_storage
+        return prev_value
