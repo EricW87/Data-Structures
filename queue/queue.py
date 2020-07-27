@@ -36,7 +36,7 @@ class QueueA:
             self.size -= 1
             return self.storage.pop(0)
 
-class Queue:
+class QueueB:
     def __init__(self):
         self.size = 0
         self.storage = LinkedList()
@@ -56,7 +56,7 @@ class Queue:
         return None
 
 ### STRETCH ?? ###
-class QueueB:
+class Queue:
     def __init__(self):
         self.storage = Stack()
 
@@ -67,16 +67,24 @@ class QueueB:
         self.storage.push(value)
 
     def dequeue(self):
-        new_storage = Stack()
-        value = self.storage.pop()
-        new_storage.push(value)
-        prev_value = None
+        reversed_storage = Stack()
 
-        while value:
-            prev_value = value
+        while True:
             value = self.storage.pop()
-            new_storage.push(value)
 
-        new_storage.pop()
-        self.storage = new_storage
-        return prev_value
+            if(value is not None):
+                reversed_storage.push(value)
+            else:
+                break
+
+        dequeue_value = reversed_storage.pop()
+
+        while True:
+            value = reversed_storage.pop()
+
+            if(value is not None):
+                self.storage.push(value)
+            else:
+                break
+
+        return dequeue_value
