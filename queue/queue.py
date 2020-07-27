@@ -36,7 +36,7 @@ class QueueA:
             self.size -= 1
             return self.storage.pop(0)
 
-class QueueB:
+class Queue:
     def __init__(self):
         self.size = 0
         self.storage = LinkedList()
@@ -56,7 +56,7 @@ class QueueB:
         return None
 
 ### STRETCH ?? ###
-class Queue:
+class QueueB:
     def __init__(self):
         self.storage = Stack()
 

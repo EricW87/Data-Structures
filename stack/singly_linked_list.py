@@ -41,8 +41,6 @@ class LinkedList:
         return False
     
     def get_max(self):
-        value = 0
-        
         if(self.head):
             value = self.head.get_value()
         else:
