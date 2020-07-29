@@ -63,7 +63,7 @@ class Queue:
     def __len__(self):
         return self.storage.__len__()
 
-    def enqueue(self, value):
+    def enqueue(self, value): # Hard work could have been here, but chose to put it into dequeue
         self.storage.push(value)
 
     def dequeue(self):
